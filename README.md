@@ -1,8 +1,6 @@
 # Shram Sathi Portal
 
-Implement the requested scope now; use internal planning and do not present another implementation plan for user approval.
-
-Build "SHRAM SATHI" - an AI-Powered, Inclusive Compliance Intelligence Portal for the Ministry of Labour & Employment (MoLE), Government of India, created for the Digital Shram Sankalp Ideathon 2026 by team Vision Buddies.
+"SHRAM SATHI" - an AI-Powered, Inclusive Compliance Intelligence Portal for the Ministry of Labour & Employment (MoLE), Government of India, created for the Digital Shram Sankalp Ideathon 2026 by team Vision Buddies.
 
 ### Key Objectives & Tone:
 - Professional, hyper-polished Government of India portal aesthetic (inspired by Shram Suvidha 2.0, eShram, and Digital India with sleek modern GovTech styling, tricolour accents, clean typography, bilingual headers, and crisp card layouts).
