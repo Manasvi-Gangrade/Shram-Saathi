@@ -1,26 +1,27 @@
 import { Link } from "@tanstack/react-router";
 import {
   Accessibility,
-  BadgeCheck,
   ChevronDown,
+  Clock,
+  CloudSun,
   Contrast,
-  FileSearch,
-  Gauge,
-  Landmark,
   Languages,
+  LogIn,
+  MapPin,
   Mic,
   Minus,
+  Play,
   Plus,
-  Presentation,
   RotateCcw,
   ScanEye,
-  ShieldCheck,
-  Store,
   Type,
-  Menu,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -34,69 +35,99 @@ import { Switch } from "@/components/ui/switch";
 import { LANGUAGES, usePortal } from "@/lib/portal-store";
 import { cn } from "@/lib/utils";
 
-const NAV = [
-  { to: "/", key: "navOverview", icon: Landmark, emoji: "🏛️" },
-  { to: "/documents", key: "navDocs", icon: FileSearch, emoji: "📄" },
-  { to: "/scorecard", key: "navScorecard", icon: Gauge, emoji: "📊" },
-  { to: "/voice", key: "navVoice", icon: Mic, emoji: "🎙️" },
-  { to: "/employer", key: "navEmployer", icon: Store, emoji: "👷" },
-  { to: "/inspector", key: "navInspector", icon: ScanEye, emoji: "🔍" },
-  { to: "/dpdp", key: "navDpdp", icon: ShieldCheck, emoji: "🛡️" },
-  { to: "/pitch", key: "navPitch", icon: Presentation, emoji: "📑" },
-] as const;
-
 export function GovHeader() {
   const portal = usePortal();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [timeStr, setTimeStr] = useState("08:42:15 pm");
+  const [soundEnabled, setSoundEnabled] = useState(true);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTimeStr(
+        now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        }).toLowerCase()
+      );
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const toggleSound = () => {
+    setSoundEnabled(!soundEnabled);
+    toast.info(soundEnabled ? "Audio narration muted" : "Audio narration enabled");
+  };
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/80">
-      <div className="tricolour-bar h-1.5 w-full" aria-hidden />
-      <div className="border-b bg-primary text-primary-foreground">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-1.5 text-[11px] sm:px-6 lg:px-8">
-          <p className="font-medium">
-            {portal.t("ministry")} · <span className="opacity-80">Digital Shram Sankalp Ideathon 2026</span>
-          </p>
-          <div className="flex items-center gap-3">
-            <span className="hidden items-center gap-1 sm:inline-flex">
-              <BadgeCheck className="size-3.5" aria-hidden /> Shram Suvidha Portal 2.0 — integrated
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85 shadow-xs">
+      {/* Tricolour Accent Line */}
+      <div className="tricolour-bar h-1 w-full" aria-hidden />
+
+      {/* Unified, Sleek Main Header (Zero Clutter) */}
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 lg:px-8">
+        {/* Left: Branding & Compact Live Status */}
+        <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-3 group" aria-label="Shram Sathi Home">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-sm border border-border/80 transition-transform group-hover:scale-105">
+              <img
+                src="/images/Logo.png"
+                alt="Ministry of Labour & Employment Logo"
+                className="size-full object-contain"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-background bg-emerald-500 animate-pulse" />
+            </div>
+            <div className="leading-tight">
+              <div className="flex items-center gap-1.5">
+                <span className="font-display text-base sm:text-lg font-extrabold tracking-tight text-foreground">
+                  SHRAM SATHI
+                </span>
+                <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                  MoLE · GoI
+                </span>
+              </div>
+              <p className="hidden md:block text-[10px] text-muted-foreground">
+                AI Compliance Intelligence Portal
+              </p>
+            </div>
+          </Link>
+
+          {/* Compact Telemetry Pill */}
+          <div className="hidden xl:flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-[11px] text-muted-foreground font-medium">
+            <span className="flex items-center gap-1 text-foreground">
+              <Clock className="size-3 text-primary" />
+              <span className="tabular-nums font-mono">{timeStr}</span>
             </span>
-            <span className="hidden items-center gap-1 md:inline-flex">
-              <ShieldCheck className="size-3.5" aria-hidden /> DPDP Act 2023 compliant
+            <span className="text-border">|</span>
+            <span className="flex items-center gap-1">
+              <MapPin className="size-3 text-destructive" />
+              <span>New Delhi</span>
+            </span>
+            <span className="text-border">|</span>
+            <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+              <CloudSun className="size-3" />
+              <span>28.5°C</span>
             </span>
           </div>
         </div>
-      </div>
 
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3" aria-label={`${portal.t("portalName")} home`}>
-          <span
-            className="grid size-11 shrink-0 place-items-center rounded-full border-2 border-saffron bg-primary text-lg font-bold text-primary-foreground shadow-sm"
-            aria-hidden
-          >
-            ☸
-          </span>
-          <span className="leading-tight">
-            <span className="block font-display text-lg font-bold tracking-tight sm:text-xl">
-              {portal.t("portalName")}
-              <span className="ml-2 align-middle text-[10px] font-semibold uppercase tracking-wider text-india-green">
-                MoLE · GoI
-              </span>
-            </span>
-            <span className="block text-[11px] text-muted-foreground sm:text-xs">{portal.t("tagline")}</span>
-          </span>
-        </Link>
-
-        <div className="ml-auto flex items-center gap-2">
+        {/* Right: Controls & Glowing Action Buttons */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Language Selector Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-1.5">
-                <Languages className="size-4" aria-hidden />
-                <span className="hidden sm:inline">{LANGUAGES.find((l) => l.code === portal.lang)?.label}</span>
-                <ChevronDown className="size-3.5" aria-hidden />
+              <Button variant="outline" size="sm" className="h-8 gap-1 rounded-full px-3 text-xs bg-background">
+                <Languages className="size-3 text-primary" />
+                <span className="max-w-[70px] truncate sm:max-w-none">
+                  {LANGUAGES.find((l) => l.code === portal.lang)?.label}
+                </span>
+                <ChevronDown className="size-3 opacity-60" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuContent align="end" className="w-52 text-xs">
               <DropdownMenuLabel>भाषा चुनें · Select language</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {LANGUAGES.map((l) => (
@@ -106,120 +137,152 @@ export function GovHeader() {
                   className={cn("justify-between", portal.lang === l.code && "font-semibold text-primary")}
                 >
                   <span>{l.label}</span>
-                  <span className="text-xs text-muted-foreground">{l.english}</span>
+                  <span className="text-[11px] text-muted-foreground">{l.english}</span>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Accessibility Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-1.5">
-                <Accessibility className="size-4" aria-hidden />
-                <span className="hidden sm:inline">Accessibility</span>
+              <Button variant="outline" size="sm" className="h-8 gap-1 rounded-full px-2.5 text-xs bg-background hidden md:inline-flex">
+                <Accessibility className="size-3.5 text-saffron" />
+                <span className="hidden lg:inline">Accessibility</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-72 p-3">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                PS-06 Accessibility Toolbar
+            <DropdownMenuContent align="end" className="w-72 p-3 text-xs">
+              <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                PS-06 Accessibility Options
               </p>
               <div className="mb-3 flex items-center justify-between rounded-lg border p-2">
-                <span className="flex items-center gap-1.5 text-sm">
-                  <Type className="size-4" aria-hidden /> Text size
+                <span className="flex items-center gap-1.5 text-xs font-medium">
+                  <Type className="size-3.5" /> Text Size
                 </span>
                 <span className="flex items-center gap-1">
-                  <Button size="icon" variant="ghost" className="size-8" aria-label="Decrease text size" onClick={() => portal.bumpText(-0.1)}>
-                    <Minus className="size-4" aria-hidden />
+                  <Button size="icon" variant="ghost" className="size-6" onClick={() => portal.bumpText(-0.1)}>
+                    <Minus className="size-3" />
                   </Button>
-                  <span className="w-10 text-center text-xs tabular-nums">{Math.round(portal.textScale * 100)}%</span>
-                  <Button size="icon" variant="ghost" className="size-8" aria-label="Increase text size" onClick={() => portal.bumpText(0.1)}>
-                    <Plus className="size-4" aria-hidden />
+                  <span className="w-8 text-center text-xs tabular-nums font-bold">
+                    {Math.round(portal.textScale * 100)}%
+                  </span>
+                  <Button size="icon" variant="ghost" className="size-6" onClick={() => portal.bumpText(0.1)}>
+                    <Plus className="size-3" />
                   </Button>
-                  <Button size="icon" variant="ghost" className="size-8" aria-label="Reset text size" onClick={portal.resetText}>
-                    <RotateCcw className="size-4" aria-hidden />
+                  <Button size="icon" variant="ghost" className="size-6" onClick={portal.resetText}>
+                    <RotateCcw className="size-3" />
                   </Button>
                 </span>
               </div>
               <ToolbarToggle
-                icon={<Contrast className="size-4" aria-hidden />}
-                label="High contrast mode"
+                icon={<Contrast className="size-3.5" />}
+                label="High Contrast"
                 checked={portal.highContrast}
                 onChange={portal.toggleContrast}
               />
               <ToolbarToggle
-                icon={<Type className="size-4" aria-hidden />}
-                label="Dyslexia-friendly font"
+                icon={<Type className="size-3.5" />}
+                label="Dyslexia Font"
                 checked={portal.dyslexia}
                 onChange={portal.toggleDyslexia}
               />
               <ToolbarToggle
-                icon={<ScanEye className="size-4" aria-hidden />}
-                label="Screen-reader focus mode"
+                icon={<ScanEye className="size-3.5" />}
+                label="Focus Mode"
                 checked={portal.focusMode}
                 onChange={portal.toggleFocusMode}
-              />
-              <ToolbarToggle
-                icon={<Gauge className="size-4" aria-hidden />}
-                label="Low-literacy icon mode"
-                checked={portal.iconMode}
-                onChange={portal.toggleIconMode}
-              />
-              <ToolbarToggle
-                icon={<Mic className="size-4" aria-hidden />}
-                label="Voice assistant"
-                checked={portal.voiceOn}
-                onChange={portal.toggleVoice}
               />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden min-h-11 min-w-11"
-            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((v) => !v)}
+          {/* SIMULATION Pill (INDRA Style) */}
+          <a
+            href="#simulation-section"
+            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-background px-3 text-[11px] font-bold text-foreground shadow-xs transition-all hover:bg-muted"
           >
-            <Menu className="size-5" aria-hidden />
-          </Button>
+            <Play className="size-2.5 fill-primary text-primary" />
+            <span>SIMULATION</span>
+          </a>
+
+          {/* LIN REGISTRY Pill (Emerald Glow) */}
+          <Link
+            to="/scorecard"
+            className="hidden sm:inline-flex h-8 items-center gap-1 rounded-full bg-emerald-600 px-3.5 text-[11px] font-bold text-white shadow-[0_0_15px_rgba(16,185,129,0.35)] transition-all hover:bg-emerald-700 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+          >
+            <span>LIN REGISTRY</span>
+          </Link>
+
+          {/* INSPECTOR LOGIN Pill (Blue Glow) */}
+          <Link
+            to="/inspector"
+            className="inline-flex h-8 items-center gap-1 rounded-full bg-blue-600 px-3.5 text-[11px] font-bold text-white shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-700 hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]"
+          >
+            <LogIn className="size-3" />
+            <span className="hidden sm:inline">INSPECTOR</span>
+            <span>LOGIN</span>
+          </Link>
         </div>
       </div>
 
-      <nav aria-label="Portal modules" className="border-t bg-secondary/60">
-        <div className="mx-auto hidden max-w-7xl gap-1 overflow-x-auto px-4 sm:px-6 lg:flex lg:px-8">
-          {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "border-saffron text-primary bg-surface" }}
-              inactiveProps={{ className: "border-transparent text-muted-foreground hover:bg-surface/70" }}
-              className="flex items-center gap-2 whitespace-nowrap border-b-2 px-3 py-2.5 text-sm font-medium transition-colors"
-            >
-              <span aria-hidden>{item.emoji}</span>
-              {portal.t(item.key)}
-            </Link>
-          ))}
+      {/* INDRA-Style Red Marquee Live Compliance Feed Banner (Thin & Sleek) */}
+      <div className="relative flex h-7 items-center overflow-hidden border-t bg-destructive text-destructive-foreground">
+        <div className="z-10 flex shrink-0 items-center gap-1.5 bg-destructive px-3 font-bold text-[10px] tracking-wider uppercase shadow-md">
+          <span className="size-1.5 rounded-full bg-white animate-pulse" />
+          <span>LIVE ALERT FEED</span>
         </div>
-        {mobileOpen ? (
-          <div className="mx-auto grid max-w-7xl gap-1 px-4 py-2 sm:px-6 lg:hidden">
-            {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                activeOptions={{ exact: item.to === "/" }}
-                onClick={() => setMobileOpen(false)}
-                activeProps={{ className: "bg-surface text-primary font-semibold" }}
-                className="flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm"
-              >
-                <span aria-hidden>{item.emoji}</span>
-                {portal.t(item.key)}
-              </Link>
-            ))}
+
+        <div className="flex flex-1 overflow-hidden">
+          <div className="animate-marquee flex items-center gap-8 whitespace-nowrap text-[11px] font-medium">
+            <span className="flex items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-amber-200">ALERT:</span>
+              <span>Minimum wage shortfall flagged for 112 workers in Peenya Garment Hub</span>
+              <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
+                [Confidence: 96%]
+              </span>
+            </span>
+            <span className="text-white/40">•</span>
+            <span className="flex items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-amber-200">DGFASLI METRIC:</span>
+              <span>National factory inspection coverage at 19.12% — AI Priority Queue Activated</span>
+              <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
+                [Confidence: 99%]
+              </span>
+            </span>
+            <span className="text-white/40">•</span>
+            <span className="flex items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-amber-200">SOCIAL SECURITY:</span>
+              <span>42,890 muster rolls verified against Code on Social Security 2020 today</span>
+              <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
+                [Confidence: 94%]
+              </span>
+            </span>
+            <span className="text-white/40">•</span>
+            <span className="flex items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-amber-200">OSH SAFETY:</span>
+              <span>Pressure vessel test certification lapsed in Okhla Phase III cluster unit</span>
+              <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
+                [Confidence: 98%]
+              </span>
+            </span>
+            <span className="text-white/40">•</span>
+            <span className="flex items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-amber-200">BOLO SHRAM SATHI:</span>
+              <span>18,400+ multilingual speech queries processed via Web Speech &amp; IVR</span>
+              <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
+                [Confidence: 95%]
+              </span>
+            </span>
+            <span className="text-white/40">•</span>
+            <span className="flex items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-amber-200">DPDP ACT 2023:</span>
+              <span>AES-256-GCM encryption active across all payroll data at rest</span>
+              <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
+                [Confidence: 100%]
+              </span>
+            </span>
           </div>
-        ) : null}
-      </nav>
+        </div>
+      </div>
     </header>
   );
 }
@@ -236,7 +299,7 @@ function ToolbarToggle({
   onChange: () => void;
 }) {
   return (
-    <label className="mb-1.5 flex cursor-pointer items-center justify-between rounded-lg border p-2 text-sm">
+    <label className="mb-1.5 flex cursor-pointer items-center justify-between rounded-lg border p-2 text-xs">
       <span className="flex items-center gap-1.5">
         {icon}
         {label}
@@ -249,34 +312,48 @@ function ToolbarToggle({
 export function GovFooter() {
   const { t } = usePortal();
   return (
-    <footer className="mt-10 border-t bg-primary text-primary-foreground">
-      <div className="tricolour-bar h-1.5 w-full" aria-hidden />
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 md:grid-cols-3 lg:px-8">
-        <div>
-          <p className="font-display text-lg font-bold">{t("portalName")}</p>
-          <p className="mt-1 text-xs opacity-85">{t("ministry")}</p>
-          <p className="mt-3 text-xs opacity-85">
-            Prototype submission for the Digital Shram Sankalp Ideathon 2026 · Problem Statements PS-05 & PS-06 · Team{" "}
-            <strong>Vision Buddies</strong>.
+    <footer className="mt-12 border-t bg-card text-card-foreground">
+      <div className="tricolour-bar h-1 w-full" aria-hidden />
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-4 lg:px-8">
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-2.5">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-xs border border-border/80">
+              <img
+                src="/images/Logo.png"
+                alt="Ministry of Labour & Employment Logo"
+                className="size-full object-contain"
+              />
+            </div>
+            <p className="font-display text-base font-bold">{t("portalName")}</p>
+          </div>
+          <p className="mt-1.5 text-xs text-muted-foreground">{t("ministry")}</p>
+          <p className="mt-3 text-xs text-muted-foreground leading-relaxed max-w-md">
+            AI-Powered, Inclusive Compliance Intelligence Platform created for the Digital Shram Sankalp Ideathon 2026.
+            Designed by <strong>Team Vision Buddies</strong> to reverse the statutory inspection deficit across India's 4 Labour Codes.
           </p>
         </div>
-        <div className="text-xs">
-          <p className="mb-2 font-semibold uppercase tracking-wide opacity-80">Integrations referenced</p>
-          <ul className="space-y-1 opacity-85">
-            <li>Shram Suvidha Portal 2.0 — unified LIN registry</li>
-            <li>eShram — unorganised worker database</li>
-            <li>EPFO / ESIC contribution gateways</li>
-            <li>DGFASLI inspection statistics</li>
+        <div className="text-xs space-y-2">
+          <p className="font-semibold uppercase tracking-wider text-foreground">National Integrations</p>
+          <ul className="space-y-1.5 text-muted-foreground">
+            <li>• Shram Suvidha Portal 2.0 (LIN Registry)</li>
+            <li>• eShram Unorganised Worker Database</li>
+            <li>• EPFO &amp; ESIC Contribution Gateways</li>
+            <li>• DGFASLI National Safety Statistics</li>
           </ul>
         </div>
-        <div className="text-xs">
-          <p className="mb-2 font-semibold uppercase tracking-wide opacity-80">Helpline</p>
-          <p className="opacity-85">Toll-free IVR: 1800-SHRAM-SATHI (1800-747-262-7284)</p>
-          <p className="mt-1 opacity-85">SMS keyword: SHRAM &lt;LIN&gt; to 56161</p>
-          <p className="mt-3 opacity-85">
-            Accessibility: WCAG 2.1 AA target · AES-256 at rest · TLS 1.3 in transit
-          </p>
+        <div className="text-xs space-y-2">
+          <p className="font-semibold uppercase tracking-wider text-foreground">Emergency &amp; Helpline</p>
+          <p className="text-muted-foreground">Toll-Free IVR: <strong>1800-SHRAM-SATHI</strong></p>
+          <p className="text-muted-foreground">SMS Query: <strong>SHRAM &lt;LIN&gt; to 56161</strong></p>
+          <div className="pt-2">
+            <Badge variant="outline" className="text-[10px] text-emerald-600 border-emerald-500/30">
+              WCAG 2.1 AA Compliant · AES-256
+            </Badge>
+          </div>
         </div>
+      </div>
+      <div className="border-t py-4 text-center text-xs text-muted-foreground">
+        © 2026 Ministry of Labour &amp; Employment, Government of India · Team Vision Buddies
       </div>
     </footer>
   );

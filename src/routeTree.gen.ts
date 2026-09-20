@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as DpdpRouteImport } from './routes/dpdp'
 import { Route as EmployerRouteImport } from './routes/employer'
+import { Route as InspectorRouteImport } from './routes/inspector'
+import { Route as PitchRouteImport } from './routes/pitch'
 import { Route as ScorecardRouteImport } from './routes/scorecard'
 import { Route as VoiceRouteImport } from './routes/voice'
 
@@ -25,9 +28,24 @@ const DocumentsRoute = DocumentsRouteImport.update({
   path: '/documents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DpdpRoute = DpdpRouteImport.update({
+  id: '/dpdp',
+  path: '/dpdp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmployerRoute = EmployerRouteImport.update({
   id: '/employer',
   path: '/employer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InspectorRoute = InspectorRouteImport.update({
+  id: '/inspector',
+  path: '/inspector',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PitchRoute = PitchRouteImport.update({
+  id: '/pitch',
+  path: '/pitch',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScorecardRoute = ScorecardRouteImport.update({
@@ -44,14 +62,20 @@ const VoiceRoute = VoiceRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
+  '/dpdp': typeof DpdpRoute
   '/employer': typeof EmployerRoute
+  '/inspector': typeof InspectorRoute
+  '/pitch': typeof PitchRoute
   '/scorecard': typeof ScorecardRoute
   '/voice': typeof VoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
+  '/dpdp': typeof DpdpRoute
   '/employer': typeof EmployerRoute
+  '/inspector': typeof InspectorRoute
+  '/pitch': typeof PitchRoute
   '/scorecard': typeof ScorecardRoute
   '/voice': typeof VoiceRoute
 }
@@ -59,22 +83,53 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
+  '/dpdp': typeof DpdpRoute
   '/employer': typeof EmployerRoute
+  '/inspector': typeof InspectorRoute
+  '/pitch': typeof PitchRoute
   '/scorecard': typeof ScorecardRoute
   '/voice': typeof VoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/documents' | '/employer' | '/scorecard' | '/voice'
+  fullPaths:
+    | '/'
+    | '/documents'
+    | '/dpdp'
+    | '/employer'
+    | '/inspector'
+    | '/pitch'
+    | '/scorecard'
+    | '/voice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/documents' | '/employer' | '/scorecard' | '/voice'
-  id: '__root__' | '/' | '/documents' | '/employer' | '/scorecard' | '/voice'
+  to:
+    | '/'
+    | '/documents'
+    | '/dpdp'
+    | '/employer'
+    | '/inspector'
+    | '/pitch'
+    | '/scorecard'
+    | '/voice'
+  id:
+    | '__root__'
+    | '/'
+    | '/documents'
+    | '/dpdp'
+    | '/employer'
+    | '/inspector'
+    | '/pitch'
+    | '/scorecard'
+    | '/voice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocumentsRoute: typeof DocumentsRoute
+  DpdpRoute: typeof DpdpRoute
   EmployerRoute: typeof EmployerRoute
+  InspectorRoute: typeof InspectorRoute
+  PitchRoute: typeof PitchRoute
   ScorecardRoute: typeof ScorecardRoute
   VoiceRoute: typeof VoiceRoute
 }
@@ -95,11 +150,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dpdp': {
+      id: '/dpdp'
+      path: '/dpdp'
+      fullPath: '/dpdp'
+      preLoaderRoute: typeof DpdpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/employer': {
       id: '/employer'
       path: '/employer'
       fullPath: '/employer'
       preLoaderRoute: typeof EmployerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inspector': {
+      id: '/inspector'
+      path: '/inspector'
+      fullPath: '/inspector'
+      preLoaderRoute: typeof InspectorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pitch': {
+      id: '/pitch'
+      path: '/pitch'
+      fullPath: '/pitch'
+      preLoaderRoute: typeof PitchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scorecard': {
@@ -122,7 +198,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocumentsRoute: DocumentsRoute,
+  DpdpRoute: DpdpRoute,
   EmployerRoute: EmployerRoute,
+  InspectorRoute: InspectorRoute,
+  PitchRoute: PitchRoute,
   ScorecardRoute: ScorecardRoute,
   VoiceRoute: VoiceRoute,
 }
