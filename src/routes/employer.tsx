@@ -33,7 +33,7 @@ export const Route = createFileRoute("/employer")({
 });
 
 function EmployerPage() {
-  const { lang } = useState ? usePortal() : usePortal();
+  const { lang } = usePortal();
   const [linIndex, setLinIndex] = useState(3);
   const est = ESTABLISHMENTS[linIndex] ?? ESTABLISHMENTS[0]!;
   const [fixed, setFixed] = useState<string[]>([]);
