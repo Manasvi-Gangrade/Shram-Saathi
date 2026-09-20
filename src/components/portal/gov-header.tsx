@@ -279,13 +279,12 @@ export function GovHeader() {
             <span>LIN REGISTRY</span>
           </Link>
 
-          {/* INSPECTOR LOGIN Pill (Blue Glow) */}
+          {/* SECURE LOGIN Pill (Blue Glow) */}
           <Link
-            to="/inspector"
-            className="inline-flex h-8 items-center gap-1 rounded-full bg-blue-600 px-3.5 text-[11px] font-bold text-white shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-700 hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]"
+            to="/login"
+            className="inline-flex h-8 items-center gap-1.5 rounded-full bg-blue-600 px-3.5 text-[11px] font-bold text-white shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-700 hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]"
           >
             <LogIn className="size-3" />
-            <span className="hidden sm:inline">INSPECTOR</span>
             <span>LOGIN</span>
           </Link>
         </div>

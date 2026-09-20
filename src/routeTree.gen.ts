@@ -14,6 +14,7 @@ import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as DpdpRouteImport } from './routes/dpdp'
 import { Route as EmployerRouteImport } from './routes/employer'
 import { Route as InspectorRouteImport } from './routes/inspector'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as PitchRouteImport } from './routes/pitch'
 import { Route as ScorecardRouteImport } from './routes/scorecard'
 import { Route as VoiceRouteImport } from './routes/voice'
@@ -43,6 +44,11 @@ const InspectorRoute = InspectorRouteImport.update({
   path: '/inspector',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PitchRoute = PitchRouteImport.update({
   id: '/pitch',
   path: '/pitch',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/dpdp': typeof DpdpRoute
   '/employer': typeof EmployerRoute
   '/inspector': typeof InspectorRoute
+  '/login': typeof LoginRoute
   '/pitch': typeof PitchRoute
   '/scorecard': typeof ScorecardRoute
   '/voice': typeof VoiceRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/dpdp': typeof DpdpRoute
   '/employer': typeof EmployerRoute
   '/inspector': typeof InspectorRoute
+  '/login': typeof LoginRoute
   '/pitch': typeof PitchRoute
   '/scorecard': typeof ScorecardRoute
   '/voice': typeof VoiceRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/dpdp': typeof DpdpRoute
   '/employer': typeof EmployerRoute
   '/inspector': typeof InspectorRoute
+  '/login': typeof LoginRoute
   '/pitch': typeof PitchRoute
   '/scorecard': typeof ScorecardRoute
   '/voice': typeof VoiceRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/dpdp'
     | '/employer'
     | '/inspector'
+    | '/login'
     | '/pitch'
     | '/scorecard'
     | '/voice'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/dpdp'
     | '/employer'
     | '/inspector'
+    | '/login'
     | '/pitch'
     | '/scorecard'
     | '/voice'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/dpdp'
     | '/employer'
     | '/inspector'
+    | '/login'
     | '/pitch'
     | '/scorecard'
     | '/voice'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   DpdpRoute: typeof DpdpRoute
   EmployerRoute: typeof EmployerRoute
   InspectorRoute: typeof InspectorRoute
+  LoginRoute: typeof LoginRoute
   PitchRoute: typeof PitchRoute
   ScorecardRoute: typeof ScorecardRoute
   VoiceRoute: typeof VoiceRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InspectorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pitch': {
       id: '/pitch'
       path: '/pitch'
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   DpdpRoute: DpdpRoute,
   EmployerRoute: EmployerRoute,
   InspectorRoute: InspectorRoute,
+  LoginRoute: LoginRoute,
   PitchRoute: PitchRoute,
   ScorecardRoute: ScorecardRoute,
   VoiceRoute: VoiceRoute,
