@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { BellRing, Download, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip as ReTooltip, XAxis, YAxis } from "recharts";
@@ -19,13 +19,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/scorecard")({
   head: () => ({
     meta: [
-      { title: "Risk-Based Compliance Scorecard — SHRAM SATHI" },
+      { title: "Risk-Based Compliance Scorecard - SHRAM SATHI" },
       {
         name: "description",
         content:
           "Look up any establishment by Shram Pehchan Sankhya (LIN) for a composite 0-100 compliance score, clause-by-clause statutory findings, penalty exposure and plain-language remedies.",
       },
-      { property: "og:title", content: "Risk-Based Compliance Scorecard — SHRAM SATHI" },
+      { property: "og:title", content: "Risk-Based Compliance Scorecard - SHRAM SATHI" },
       {
         property: "og:description",
         content: "Composite risk scoring by LIN with statutory citations, penalty exposure and resolution guidance.",
@@ -61,7 +61,7 @@ function ScorecardPage() {
 
   const exportCard = () => {
     const lines = [
-      "SHRAM SATHI — RISK-BASED COMPLIANCE SCORECARD",
+      "SHRAM SATHI - RISK-BASED COMPLIANCE SCORECARD",
       "Ministry of Labour & Employment, Government of India",
       "",
       `Establishment      : ${est.name}`,
@@ -97,7 +97,7 @@ function ScorecardPage() {
         eyebrow="PS-05 · Module 3"
         title="Dynamic Risk-Based Compliance Scorecard"
         titleHi="गतिशील जोखिम आधारित अनुपालन स्कोरकार्ड"
-        description="A composite, explainable score per establishment — built from clause-level statutory findings, weighted by severity, worker exposure and recurrence."
+        description="A composite, explainable score per establishment - built from clause-level statutory findings, weighted by severity, worker exposure and recurrence."
         actions={
           <>
             <SpeakButton text={narration} size="default" />
@@ -223,7 +223,7 @@ function ScorecardPage() {
         <label className="mb-4 flex w-fit cursor-pointer items-center gap-3 rounded-lg border bg-card px-3 py-2 text-sm">
           <Switch checked={iconMode} onCheckedChange={toggleIconMode} aria-label="Low-literacy icon mode" />
           <span>
-            <strong>Low-literacy icon mode</strong> — turn legal tables into traffic-light cards with audio
+            <strong>Low-literacy icon mode</strong> - turn legal tables into traffic-light cards with audio
           </span>
         </label>
 

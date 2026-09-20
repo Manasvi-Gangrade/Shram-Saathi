@@ -32,11 +32,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
+import { GoogleTranslateWidget, useTTS } from "@/components/portal/translate-tts";
 import { LANGUAGES, usePortal } from "@/lib/portal-store";
 import { cn } from "@/lib/utils";
 
 export function GovHeader() {
   const portal = usePortal();
+  const { ttsEnabled, setTtsEnabled } = useTTS();
   const [timeStr, setTimeStr] = useState("08:42:15 pm");
   const [soundEnabled, setSoundEnabled] = useState(true);
 
@@ -116,32 +118,38 @@ export function GovHeader() {
 
         {/* Right: Controls & Glowing Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Language Selector Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="h-8 gap-1 rounded-full px-3 text-xs bg-background">
-                <Languages className="size-3 text-primary" />
-                <span className="max-w-[70px] truncate sm:max-w-none">
-                  {LANGUAGES.find((l) => l.code === portal.lang)?.label}
-                </span>
-                <ChevronDown className="size-3 opacity-60" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-52 text-xs">
-              <DropdownMenuLabel>भाषा चुनें · Select language</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              {LANGUAGES.map((l) => (
-                <DropdownMenuItem
-                  key={l.code}
-                  onSelect={() => portal.setLang(l.code)}
-                  className={cn("justify-between", portal.lang === l.code && "font-semibold text-primary")}
-                >
-                  <span>{l.label}</span>
-                  <span className="text-[11px] text-muted-foreground">{l.english}</span>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Google Translate Dropdown */}
+          <GoogleTranslateWidget />
+
+          {/* Hover Text-to-Speech (TTS) Toggle */}
+          <Button
+            variant={ttsEnabled ? "default" : "outline"}
+            size="sm"
+            onClick={() => {
+              setTtsEnabled(!ttsEnabled);
+              toast.info(
+                !ttsEnabled
+                  ? "Hover voice narration active (hover over any text to listen)"
+                  : "Hover voice narration muted"
+              );
+            }}
+            className={cn(
+              "h-8 gap-1.5 rounded-full px-2.5 text-xs transition-all",
+              ttsEnabled
+                ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+            title={
+              ttsEnabled
+                ? "Hover Voice Active: Auto-reads hovered text in selected language (Click to mute)"
+                : "Hover Voice Muted (Click to enable audio reading on hover)"
+            }
+          >
+            <Volume2 className={cn("size-3.5", ttsEnabled && "animate-pulse")} />
+            <span className="hidden sm:inline font-medium">
+              {ttsEnabled ? "Voice On" : "Voice Off"}
+            </span>
+          </Button>
 
           {/* Accessibility Dropdown */}
           <DropdownMenu>
@@ -243,7 +251,7 @@ export function GovHeader() {
             <span className="text-white/40">•</span>
             <span className="flex items-center gap-2">
               <span className="font-bold uppercase tracking-wider text-amber-200">DGFASLI METRIC:</span>
-              <span>National factory inspection coverage at 19.12% — AI Priority Queue Activated</span>
+              <span>National factory inspection coverage at 19.12% - AI Priority Queue Activated</span>
               <span className="rounded bg-black/30 px-1.5 py-0.2 font-mono text-[9px] text-emerald-200">
                 [Confidence: 99%]
               </span>

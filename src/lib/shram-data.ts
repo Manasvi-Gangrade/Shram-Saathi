@@ -1,4 +1,4 @@
-export type RiskBand = "low" | "mid" | "high";
+﻿export type RiskBand = "low" | "mid" | "high";
 
 export type ClauseFinding = {
   id: string;
@@ -37,9 +37,9 @@ const wageFinding: ClauseFinding = {
   title: "Minimum wage rate below notified floor",
   severity: "critical",
   observation:
-    "Wage register shows ₹380/day for skilled tailoring labour. Notified Zone B skilled minimum wage is ₹440/day — a shortfall of ₹60/day across 112 workers.",
+    "Wage register shows ₹380/day for skilled tailoring labour. Notified Zone B skilled minimum wage is ₹440/day - a shortfall of ₹60/day across 112 workers.",
   observationHi:
-    "वेतन रजिस्टर में कुशल श्रमिकों को ₹380 प्रतिदिन दिया गया है, जबकि ज़ोन बी की अधिसूचित न्यूनतम मजदूरी ₹440 प्रतिदिन है — 112 श्रमिकों पर ₹60 प्रतिदिन की कमी।",
+    "वेतन रजिस्टर में कुशल श्रमिकों को ₹380 प्रतिदिन दिया गया है, जबकि ज़ोन बी की अधिसूचित न्यूनतम मजदूरी ₹440 प्रतिदिन है - 112 श्रमिकों पर ₹60 प्रतिदिन की कमी।",
   penalty: "Up to ₹50,000; ₹1,00,000 with imprisonment on repeat within 5 years",
   resolve:
     "Revise the wage sheet to ₹440/day, pay arrears of ₹2,01,600 for the last 30 days, and re-upload the corrected register within 15 days.",
@@ -122,7 +122,7 @@ const compliantWage: ClauseFinding = {
   severity: "compliant",
   observation: "Equal wage rates verified across 64 male and 48 female workers for the same class of work.",
   observationHi: "समान कार्य के लिए 64 पुरुष व 48 महिला श्रमिकों को समान मजदूरी सत्यापित।",
-  penalty: "—",
+  penalty: "-",
   resolve: "Maintain the current parity register format.",
   resolveHi: "वर्तमान समता रजिस्टर प्रारूप बनाए रखें।",
   weight: 0,
@@ -136,7 +136,7 @@ const compliantOsh: ClauseFinding = {
   severity: "compliant",
   observation: "All 112 workers underwent the mandated annual medical examination in Nov 2025.",
   observationHi: "सभी 112 श्रमिकों की नवंबर 2025 में अनिवार्य वार्षिक चिकित्सा जांच पूर्ण।",
-  penalty: "—",
+  penalty: "-",
   resolve: "Schedule the next cycle before Nov 2026.",
   resolveHi: "अगला चक्र नवंबर 2026 से पहले निर्धारित करें।",
   weight: 0,
@@ -173,7 +173,7 @@ export const ESTABLISHMENTS: Establishment[] = [
   },
   {
     lin: "LIN-2245-7781-0093",
-    name: "Bharat Infra Ltd — Okhla Site",
+    name: "Bharat Infra Ltd - Okhla Site",
     sector: "Construction & Infrastructure",
     district: "South Delhi, NCT of Delhi",
     cluster: "Okhla Industrial Area, Phase III",
@@ -271,7 +271,7 @@ export type SampleDoc = {
 export const SAMPLE_DOCS: SampleDoc[] = [
   {
     id: "doc-wage",
-    title: "Radha Krishna Garments — Wage Register 2026",
+    title: "Radha Krishna Garments - Wage Register 2026",
     kind: "Form XVII Wage Register (PDF, scanned)",
     lin: "LIN-1082-9923-4120",
     pages: 7,
@@ -283,13 +283,13 @@ export const SAMPLE_DOCS: SampleDoc[] = [
       { field: "Skilled daily wage", value: "₹380.00", status: "flag" },
       { field: "Notified Zone B minimum", value: "₹440.00", status: "flag" },
       { field: "Overtime hours", value: "428 hrs @ 1.25x", status: "flag" },
-      { field: "Wage slips issued", value: "Yes — digital + printed", status: "ok" },
+      { field: "Wage slips issued", value: "Yes - digital + printed", status: "ok" },
     ],
     findingIds: ["w-6-1", "w-13", "ok-w-3"],
   },
   {
     id: "doc-osh",
-    title: "Bharat Infra Ltd — OSH Safety Audit",
+    title: "Bharat Infra Ltd - OSH Safety Audit",
     kind: "OSH Safety Checklist & Form 2 certificates (PDF)",
     lin: "LIN-2245-7781-0093",
     pages: 12,
@@ -307,7 +307,7 @@ export const SAMPLE_DOCS: SampleDoc[] = [
   },
   {
     id: "doc-esi",
-    title: "Greenwood Logistics — ESI / EPF Filing",
+    title: "Greenwood Logistics - ESI / EPF Filing",
     kind: "ECR challan + ESI contribution statement (PDF)",
     lin: "LIN-3390-1124-8876",
     pages: 5,
@@ -324,7 +324,7 @@ export const SAMPLE_DOCS: SampleDoc[] = [
   },
   {
     id: "doc-clra",
-    title: "Nandi Contractors — CLRA Muster Roll",
+    title: "Nandi Contractors - CLRA Muster Roll",
     kind: "Contract Labour Form XVI muster roll (image scan)",
     lin: "LIN-2245-7781-0093",
     pages: 4,
@@ -369,7 +369,7 @@ export const PIPELINE_STAGES = [
   {
     key: "rules",
     title: "Deterministic Statutory Rule Engine",
-    detail: "Every LLM flag is re-validated against hard-coded statutory thresholds. Unverifiable flags are dropped — zero hallucinated notices.",
+    detail: "Every LLM flag is re-validated against hard-coded statutory thresholds. Unverifiable flags are dropped - zero hallucinated notices.",
   },
   {
     key: "anomaly",
@@ -397,11 +397,11 @@ export const CLUSTER_RISK = [
 ];
 
 export const AUDIT_LOG = [
-  { time: "2026-02-28 09:14:22 IST", actor: "INSP/KA/BLR/0271", action: "Scorecard viewed", target: "LIN-1082-9923-4120", basis: "Statutory duty — Sec 34 OSH Code" },
+  { time: "2026-02-28 09:14:22 IST", actor: "INSP/KA/BLR/0271", action: "Scorecard viewed", target: "LIN-1082-9923-4120", basis: "Statutory duty - Sec 34 OSH Code" },
   { time: "2026-02-28 09:16:04 IST", actor: "AI-ENGINE/rule-v4.2", action: "Rule-engine revalidation", target: "doc-wage (SHA-256 …a19f)", basis: "Automated processing log" },
-  { time: "2026-02-27 17:02:51 IST", actor: "EMP/LIN-3390…8876", action: "Consent granted — wage data", target: "Self", basis: "DPDP Sec 6 — informed consent" },
-  { time: "2026-02-27 12:41:09 IST", actor: "WORKER/UAN-1002…4417", action: "Erasure request raised", target: "Voice recording ID vr-8821", basis: "DPDP Sec 12(3) — right to erasure" },
-  { time: "2026-02-26 08:33:47 IST", actor: "SYSTEM", action: "Key rotation (AES-256-GCM)", target: "documents-at-rest bucket", basis: "Security safeguard — Sec 8(5)" },
+  { time: "2026-02-27 17:02:51 IST", actor: "EMP/LIN-3390…8876", action: "Consent granted - wage data", target: "Self", basis: "DPDP Sec 6 - informed consent" },
+  { time: "2026-02-27 12:41:09 IST", actor: "WORKER/UAN-1002…4417", action: "Erasure request raised", target: "Voice recording ID vr-8821", basis: "DPDP Sec 12(3) - right to erasure" },
+  { time: "2026-02-26 08:33:47 IST", actor: "SYSTEM", action: "Key rotation (AES-256-GCM)", target: "documents-at-rest bucket", basis: "Security safeguard - Sec 8(5)" },
 ];
 
 export const SMS_SCRIPTS: Record<string, { from: string; body: string }[]> = {

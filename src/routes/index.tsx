@@ -65,13 +65,13 @@ import { DGFASLI_COVERAGE, PIPELINE_STAGES, ESTABLISHMENTS, SAMPLE_DOCS } from "
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SHRAM SATHI — National Labour Compliance Intelligence Command Center | MoLE, GoI" },
+      { title: "SHRAM SATHI - National Labour Compliance Intelligence Command Center | MoLE, GoI" },
       {
         name: "description",
         content:
           "PS-05 AI-driven smart inspection and PS-06 inclusive technology: how SHRAM SATHI reverses the fall in inspection coverage from 47.56% to 19.12% across India's four Labour Codes.",
       },
-      { property: "og:title", content: "SHRAM SATHI — Command Center | Ministry of Labour & Employment" },
+      { property: "og:title", content: "SHRAM SATHI - Command Center | Ministry of Labour & Employment" },
       {
         property: "og:description",
         content:
@@ -224,7 +224,7 @@ function Overview() {
               </h1>
 
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-                A unified statutory compliance intelligence platform converting scanned registers, safety audits, and contribution challans into verified, citation-backed intelligence across India's <strong>4 Labour Codes</strong> — empowering inspectors with targeted priority, MSMEs with self-cure, and 500M+ workers with voice-first dignity.
+                A unified statutory compliance intelligence platform converting scanned registers, safety audits, and contribution challans into verified, citation-backed intelligence across India's <strong>4 Labour Codes</strong> - empowering inspectors with targeted priority, MSMEs with self-cure, and 500M+ workers with voice-first dignity.
               </p>
 
               {/* Action Buttons */}
@@ -313,7 +313,7 @@ function Overview() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <CardTitle className="text-base sm:text-lg font-bold">
-                    SHRAM-BOT — The Statutory Labour Intelligence AI
+                    SHRAM-BOT - The Statutory Labour Intelligence AI
                   </CardTitle>
                   <Badge variant="outline" className="text-[10px] border-primary/30 text-primary">
                     Statutory Intelligence Engine

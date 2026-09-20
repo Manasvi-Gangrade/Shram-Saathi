@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Award,
@@ -24,7 +24,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export const Route = createFileRoute("/pitch")({
   head: () => ({
     meta: [
-      { title: "Ideathon Pitch Mode — Team Vision Buddies | SHRAM SATHI" },
+      { title: "Ideathon Pitch Mode - Team Vision Buddies | SHRAM SATHI" },
       {
         name: "description",
         content:

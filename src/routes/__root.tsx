@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+﻿import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import { GovFooter, GovHeader } from "@/components/portal/gov-header";
+import { TTSProvider } from "@/components/portal/translate-tts";
 import { Toaster } from "@/components/ui/sonner";
 import { PortalProvider } from "@/lib/portal-store";
 import appCss from "../styles.css?url";
@@ -80,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SHRAM SATHI — AI Compliance Intelligence Portal | MoLE, Govt. of India" },
+      { title: "SHRAM SATHI - AI Compliance Intelligence Portal | MoLE, Govt. of India" },
       {
         name: "description",
         content:
@@ -129,15 +130,17 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <PortalProvider>
-        <div className="flex min-h-dvh flex-col">
-          <GovHeader />
-          <main className="flex-1">
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
-          </main>
-          <GovFooter />
-        </div>
-        <Toaster position="top-right" richColors />
+        <TTSProvider>
+          <div className="flex min-h-dvh flex-col">
+            <GovHeader />
+            <main className="flex-1">
+              {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+              <Outlet />
+            </main>
+            <GovFooter />
+          </div>
+          <Toaster position="top-right" richColors />
+        </TTSProvider>
       </PortalProvider>
     </QueryClientProvider>
   );

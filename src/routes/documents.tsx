@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, FileUp, Loader2, ShieldCheck, TriangleAlert, Upload } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -26,13 +26,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/documents")({
   head: () => ({
     meta: [
-      { title: "AI Document Ingestion & Verification Engine — SHRAM SATHI" },
+      { title: "AI Document Ingestion & Verification Engine - SHRAM SATHI" },
       {
         name: "description",
         content:
           "Upload or load sample wage registers, OSH audits and ECR challans and watch OCR, RAG interpretation and the deterministic statutory rule engine produce citation-backed compliance flags.",
       },
-      { property: "og:title", content: "AI Document Ingestion & Verification Engine — SHRAM SATHI" },
+      { property: "og:title", content: "AI Document Ingestion & Verification Engine - SHRAM SATHI" },
       {
         property: "og:description",
         content: "OCR + RAG + statutory rule engine over labour compliance documents, with sector anomaly detection.",
@@ -102,7 +102,7 @@ function DocumentsPage() {
       : SAMPLE_DOCS[0];
     if (!guess) return;
     toast.info(`${file.name} queued`, { description: "Classified and routed to the ingestion pipeline." });
-    run({ ...guess, title: `${file.name} — parsed as ${guess.kind}` });
+    run({ ...guess, title: `${file.name} - parsed as ${guess.kind}` });
   };
 
   const establishment = doc ? ESTABLISHMENTS.find((e) => e.lin === doc.lin) : undefined;
@@ -115,7 +115,7 @@ function DocumentsPage() {
         eyebrow="PS-05 · Module 2"
         title="AI Document Ingestion & Compliance Verification Engine"
         titleHi="एआई दस्तावेज़ ग्रहण एवं अनुपालन सत्यापन इंजन"
-        description="Drop a wage register, safety audit or contribution challan — or load a pre-verified sample — and watch the five-stage pipeline extract, interpret, and legally validate every field."
+        description="Drop a wage register, safety audit or contribution challan - or load a pre-verified sample - and watch the five-stage pipeline extract, interpret, and legally validate every field."
       />
 
       <Section>
@@ -291,7 +291,7 @@ function DocumentsPage() {
                 </div>
                 <p className="mt-4 inline-flex items-center gap-2 rounded-lg border border-india-green/40 bg-india-green/10 px-3 py-2 text-sm">
                   <ShieldCheck className="size-4 text-india-green" aria-hidden />
-                  Rule engine dropped 2 LLM-proposed flags that could not be tied to a notified threshold — zero hallucinated
+                  Rule engine dropped 2 LLM-proposed flags that could not be tied to a notified threshold - zero hallucinated
                   notices reach an inspector.
                 </p>
               </Section>

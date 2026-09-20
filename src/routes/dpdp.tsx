@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import {
   CheckCircle2,
   Database,
@@ -26,7 +26,7 @@ import { AUDIT_LOG } from "@/lib/shram-data";
 export const Route = createFileRoute("/dpdp")({
   head: () => ({
     meta: [
-      { title: "DPDP Act 2023 & Security Hub — SHRAM SATHI" },
+      { title: "DPDP Act 2023 & Security Hub - SHRAM SATHI" },
       {
         name: "description",
         content:

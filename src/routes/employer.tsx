@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { CalendarClock, CheckCircle2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -16,13 +16,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/employer")({
   head: () => ({
     meta: [
-      { title: "Employer Self-Serve Portal — SHRAM SATHI" },
+      { title: "Employer Self-Serve Portal - SHRAM SATHI" },
       {
         name: "description",
         content:
           "A kirana, MSME and factory-friendly view of labour compliance: traffic-light status, exact arrear amounts and a rectification window before any inspection.",
       },
-      { property: "og:title", content: "Employer Self-Serve Portal — SHRAM SATHI" },
+      { property: "og:title", content: "Employer Self-Serve Portal - SHRAM SATHI" },
       {
         property: "og:description",
         content: "Simple, encouraging guidance for small employers to fix labour code gaps before an inspection.",
@@ -47,7 +47,7 @@ function EmployerPage() {
         eyebrow="Module 5 · Employer view"
         title="Employer Self-Serve Portal"
         titleHi="नियोक्ता स्व-सेवा पोर्टल"
-        description="Written for the shop owner and the contractor, not the compliance lawyer. See what is wrong, what it costs to fix, and how long you have — before an inspector is ever allotted."
+        description="Written for the shop owner and the contractor, not the compliance lawyer. See what is wrong, what it costs to fix, and how long you have - before an inspector is ever allotted."
       />
 
       <Section>
@@ -100,7 +100,7 @@ function EmployerPage() {
             <Card className="border-l-4 border-l-india-green">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Sparkles className="size-4 text-india-green" aria-hidden /> You are not being penalised — you are being helped
+                  <Sparkles className="size-4 text-india-green" aria-hidden /> You are not being penalised - you are being helped
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
@@ -140,7 +140,7 @@ function EmployerPage() {
                     className="gap-1.5"
                     onClick={() => {
                       setFixed((l) => (isFixed ? l.filter((x) => x !== f.id) : [...l, f.id]));
-                      if (!isFixed) toast.success("Marked as rectified", { description: `${f.title} — proof upload reminder scheduled.` });
+                      if (!isFixed) toast.success("Marked as rectified", { description: `${f.title} - proof upload reminder scheduled.` });
                     }}
                   >
                     <CheckCircle2 className="size-4" aria-hidden />

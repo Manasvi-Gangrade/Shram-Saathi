@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { Mic, MicOff, Phone, PhoneOff, Send, Smartphone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -16,13 +16,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/voice")({
   head: () => ({
     meta: [
-      { title: "Inclusive Voice & Low-Tech Suite (PS-06) — SHRAM SATHI" },
+      { title: "Inclusive Voice & Low-Tech Suite (PS-06) - SHRAM SATHI" },
       {
         name: "description",
         content:
           "Bolo Shram Sathi: real speech synthesis and speech recognition in eight Indian languages, plus SMS alert and IVR keypad simulators for feature-phone users.",
       },
-      { property: "og:title", content: "Bolo Shram Sathi — Inclusive Voice & Low-Tech Suite" },
+      { property: "og:title", content: "Bolo Shram Sathi - Inclusive Voice & Low-Tech Suite" },
       {
         property: "og:description",
         content: "Voice-first, SMS and IVR access to labour compliance status for low-literacy and low-connectivity users.",
@@ -96,8 +96,8 @@ function VoicePage() {
     <>
       <PageHero
         eyebrow="PS-06 · Module 4 · Core accessibility layer"
-        title="Bolo Shram Sathi — Inclusive Voice & Low-Tech Suite"
-        titleHi="बोलो श्रम साथी — समावेशी वाणी एवं लो-टेक सुविधा"
+        title="Bolo Shram Sathi - Inclusive Voice & Low-Tech Suite"
+        titleHi="बोलो श्रम साथी - समावेशी वाणी एवं लो-टेक सुविधा"
         description="Real browser speech synthesis and speech recognition, not a mock-up. Ask about your compliance status in Hindi or English, hear findings read aloud, and reach the same intelligence over SMS and IVR on a ₹800 feature phone."
       />
 
@@ -215,7 +215,7 @@ function VoicePage() {
       </Section>
 
       <Section
-        title="IVR simulator — 1800-SHRAM-SATHI"
+        title="IVR simulator - 1800-SHRAM-SATHI"
         subtitle="Call, hear the prompt spoken aloud in your language, and press keypad numbers exactly as a worker would on a landline."
       >
         <div className="grid gap-5 lg:grid-cols-[320px_1fr]">

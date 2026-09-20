@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   AlertTriangle,
   ArrowRight,
@@ -32,7 +32,7 @@ import { CLUSTER_RISK, ESTABLISHMENTS, bandOf, BAND_META } from "@/lib/shram-dat
 export const Route = createFileRoute("/inspector")({
   head: () => ({
     meta: [
-      { title: "Inspector-cum-Facilitator Command Dashboard — SHRAM SATHI" },
+      { title: "Inspector-cum-Facilitator Command Dashboard - SHRAM SATHI" },
       {
         name: "description",
         content:
