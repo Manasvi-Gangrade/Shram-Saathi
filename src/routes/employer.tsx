@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { CalendarClock, CheckCircle2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -60,11 +60,10 @@ function EmployerPage() {
                 setFixed([]);
               }}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-sm transition-colors",
-                i === linIndex ? "border-primary bg-primary text-primary-foreground" : "hover:bg-secondary",
+                "rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors",
+                i === linIndex ? "border-primary bg-primary text-primary-foreground font-semibold" : "hover:bg-secondary",
               )}
             >
-              {e.sector.includes("Micro") ? "🏪" : e.sector.includes("Construction") ? "🏗️" : e.sector.includes("Transport") ? "🚚" : "🏭"}{" "}
               {e.name.split(" ").slice(0, 3).join(" ")}
             </button>
           ))}

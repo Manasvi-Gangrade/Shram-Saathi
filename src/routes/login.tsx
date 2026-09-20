@@ -160,17 +160,17 @@ function LoginPage() {
             </div>
 
             {/* Glowing Role Quick Launch Buttons */}
-            <div className="flex flex-wrap items-center gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full sm:w-auto">
               <Button
                 size="sm"
                 onClick={() => {
                   setActiveTab("inspector");
                   handleInspectorLogin();
                 }}
-                className="h-10 gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(37,99,235,0.45)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(37,99,235,0.7)]"
+                className="w-full h-10 gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-3 sm:px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(37,99,235,0.45)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(37,99,235,0.7)]"
               >
-                <ShieldCheck className="size-4" />
-                <span>Demo Inspector</span>
+                <ShieldCheck className="size-4 shrink-0" />
+                <span className="truncate">Demo Inspector</span>
               </Button>
 
               <Button
@@ -179,10 +179,10 @@ function LoginPage() {
                   setActiveTab("employer");
                   handleEmployerLogin();
                 }}
-                className="h-10 gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(217,119,6,0.45)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(217,119,6,0.7)]"
+                className="w-full h-10 gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-3 sm:px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(217,119,6,0.45)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(217,119,6,0.7)]"
               >
-                <Building2 className="size-4" />
-                <span>Demo Employer</span>
+                <Building2 className="size-4 shrink-0" />
+                <span className="truncate">Demo Employer</span>
               </Button>
 
               <Button
@@ -191,10 +191,10 @@ function LoginPage() {
                   setActiveTab("worker");
                   handleWorkerLogin();
                 }}
-                className="h-10 gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.45)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(16,185,129,0.7)]"
+                className="w-full h-10 gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-3 sm:px-4 text-xs font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.45)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(16,185,129,0.7)]"
               >
-                <HardHat className="size-4" />
-                <span>Demo Worker</span>
+                <HardHat className="size-4 shrink-0" />
+                <span className="truncate">Demo Worker</span>
               </Button>
             </div>
           </div>
@@ -250,30 +250,30 @@ function LoginPage() {
                 </div>
               </div>
 
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                   {/* High-Contrast Bold Role Tabs */}
-                  <TabsList className="grid w-full grid-cols-3 mb-6 p-1.5 bg-muted/80 rounded-xl border border-border">
+                  <TabsList className="grid w-full grid-cols-3 mb-6 p-1 sm:p-1.5 bg-muted/80 rounded-xl border border-border">
                     <TabsTrigger
                       value="inspector"
-                      className="gap-1.5 text-xs font-bold rounded-lg py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/40 transition-all"
+                      className="gap-1 sm:gap-1.5 px-1 sm:px-3 text-[11px] sm:text-xs font-bold rounded-lg py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/40 transition-all"
                     >
-                      <ShieldCheck className="size-4" />
-                      <span>Inspector</span>
+                      <ShieldCheck className="size-3.5 sm:size-4 shrink-0" />
+                      <span className="truncate">Inspector</span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="employer"
-                      className="gap-1.5 text-xs font-bold rounded-lg py-2 data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/40 transition-all"
+                      className="gap-1 sm:gap-1.5 px-1 sm:px-3 text-[11px] sm:text-xs font-bold rounded-lg py-2 data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/40 transition-all"
                     >
-                      <Building2 className="size-4" />
-                      <span>Employer</span>
+                      <Building2 className="size-3.5 sm:size-4 shrink-0" />
+                      <span className="truncate">Employer</span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="worker"
-                      className="gap-1.5 text-xs font-bold rounded-lg py-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-emerald-500/40 transition-all"
+                      className="gap-1 sm:gap-1.5 px-1 sm:px-3 text-[11px] sm:text-xs font-bold rounded-lg py-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-emerald-500/40 transition-all"
                     >
-                      <HardHat className="size-4" />
-                      <span>Worker</span>
+                      <HardHat className="size-3.5 sm:size-4 shrink-0" />
+                      <span className="truncate">Worker</span>
                     </TabsTrigger>
                   </TabsList>
 

@@ -5,6 +5,7 @@ import {
   Award,
   Bot,
   Brain,
+  Building2,
   CheckCircle2,
   ChevronRight,
   Database,
@@ -211,33 +212,35 @@ function Overview() {
   return (
     <div className="flex flex-col gap-10 pb-16">
       {/* 1. HERO SECTION (INDRA-INSPIRED COMMAND HERO) */}
-      <section className="relative overflow-hidden border-b bg-gradient-to-b from-muted/30 via-background to-background pt-6 pb-12 lg:pt-10 lg:pb-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-8 lg:grid-cols-12">
+      <section className="relative overflow-hidden border-b bg-gradient-to-b from-muted/30 via-background to-background pt-6 pb-12 lg:pt-10 lg:pb-16 w-full max-w-full">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0">
+          <div className="grid items-center gap-8 lg:grid-cols-12 min-w-0 w-full">
             {/* Left Column: Bold Typography & Actions */}
-            <div className="lg:col-span-7 space-y-5">
-              <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-5.5xl text-foreground leading-[1.12]">
+            <div className="lg:col-span-7 space-y-5 min-w-0 w-full">
+              <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15] break-words">
                 SHRAM SATHI: Where India's Labour Data Becomes{" "}
-                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 bg-clip-text text-transparent inline-block">
                   Equitable Decisions.
                 </span>
               </h1>
 
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
+              <p className="text-xs sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
                 A unified statutory compliance intelligence platform converting scanned registers, safety audits, and contribution challans into verified, citation-backed intelligence across India's <strong>4 Labour Codes</strong> - empowering inspectors with targeted priority, MSMEs with self-cure, and 500M+ workers with voice-first dignity.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button asChild size="lg" className="gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 hover:from-blue-700 hover:to-indigo-700">
-                  <Link to="/documents">
-                    Run Live AI Engine <ArrowRight className="size-4" />
-                  </Link>
-                </Button>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                <Link
+                  to="/documents"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-indigo-700 w-full sm:w-auto"
+                >
+                  <span>Run Live AI Engine</span>
+                  <ArrowRight className="size-4" />
+                </Link>
                 <a
                   href="#simulation-section"
                   onClick={handleRunSimulation}
-                  className="inline-flex h-11 items-center gap-2 rounded-md border border-input bg-background px-4 text-sm font-semibold text-foreground shadow-xs transition-colors hover:bg-muted"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-input bg-background px-5 text-sm font-semibold text-foreground shadow-xs transition-colors hover:bg-muted w-full sm:w-auto"
                 >
                   <Play className="size-3.5 fill-primary text-primary" />
                   <span>Initiate System Simulation</span>
@@ -247,24 +250,24 @@ function Overview() {
               {/* Colorful Statutory Metrics Pills */}
               <div className="flex flex-wrap items-center gap-2.5 pt-2 text-xs">
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-gradient-to-r from-amber-500/15 to-amber-500/5 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300 shadow-xs backdrop-blur-xs transition-all hover:scale-105 hover:border-amber-500/60">
-                  <span className="text-sm">⚖️</span>
+                  <Layers className="size-3.5 text-amber-600 dark:text-amber-400" />
                   <span><strong className="font-bold">4 Labour Codes</strong> Unified</span>
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/40 bg-gradient-to-r from-blue-500/15 to-indigo-500/5 px-3 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 shadow-xs backdrop-blur-xs transition-all hover:scale-105 hover:border-blue-500/60">
-                  <span className="text-sm">🏢</span>
+                  <Building2 className="size-3.5 text-blue-600 dark:text-blue-400" />
                   <span><strong className="font-bold">29 Central Acts</strong> Consolidated</span>
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-gradient-to-r from-emerald-500/15 to-teal-500/5 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300 shadow-xs backdrop-blur-xs transition-all hover:scale-105 hover:border-emerald-500/60">
-                  <span className="text-sm">👥</span>
+                  <Users className="size-3.5 text-emerald-600 dark:text-emerald-400" />
                   <span><strong className="font-bold">500M+ Workers</strong> Covered</span>
                 </div>
               </div>
             </div>
 
             {/* Right Column: Clean Cinematic Video Player & Image Marquee Directly Below */}
-            <div className="lg:col-span-5 flex flex-col gap-3.5">
+            <div className="lg:col-span-5 flex flex-col gap-3.5 min-w-0 w-full overflow-hidden">
               <div className="w-full overflow-hidden rounded-2xl border border-border/80 bg-black shadow-2xl transition-all hover:shadow-primary/20">
                 <video
                   src="/videos/eshram_journey.mp4"
@@ -278,9 +281,9 @@ function Overview() {
               </div>
 
               {/* Image Marquee (Placed directly below video - pure pictures, zero text overlay) */}
-              <div className="w-full overflow-hidden rounded-xl border border-border/50 bg-muted/20 p-2 shadow-xs">
-                <div className="overflow-hidden w-full relative">
-                  <div className="flex gap-2.5 animate-marquee hover:[animation-play-state:paused]">
+              <div className="w-full max-w-full overflow-hidden rounded-xl border border-border/50 bg-muted/20 p-2 shadow-xs min-w-0">
+                <div className="overflow-hidden w-full max-w-full relative min-w-0">
+                  <div className="flex gap-2.5 animate-marquee hover:[animation-play-state:paused] min-w-0">
                     {[...CAROUSEL_CARDS, ...CAROUSEL_CARDS].map((card, idx) => (
                       <div
                         key={`${card.id}-${idx}`}
@@ -370,18 +373,22 @@ function Overview() {
                     <span className="text-lg font-bold">+</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56 text-xs">
-                  <DropdownMenuItem onSelect={() => setSelectedMode("Statutory Search")}>
-                    📜 Statutory Code Search
+                <DropdownMenuContent align="start" className="w-60 text-xs">
+                  <DropdownMenuItem onSelect={() => setSelectedMode("Statutory Search")} className="gap-2">
+                    <FileText className="size-4 text-primary" />
+                    <span>Statutory Code Search</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setSelectedMode("LIN Lookup")}>
-                    📊 Establishment LIN Lookup
+                  <DropdownMenuItem onSelect={() => setSelectedMode("LIN Lookup")} className="gap-2">
+                    <Gauge className="size-4 text-primary" />
+                    <span>Establishment LIN Lookup</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setSelectedMode("Wage & OT Calculator")}>
-                    ⚖️ Wage &amp; Overtime Calculator
+                  <DropdownMenuItem onSelect={() => setSelectedMode("Wage & OT Calculator")} className="gap-2">
+                    <Layers className="size-4 text-primary" />
+                    <span>Wage &amp; Overtime Calculator</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setSelectedMode("Voice Assistant")}>
-                    🎙️ Voice Assistant Query
+                  <DropdownMenuItem onSelect={() => setSelectedMode("Voice Assistant")} className="gap-2">
+                    <Mic className="size-4 text-primary" />
+                    <span>Voice Assistant Query</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -630,9 +637,9 @@ function Overview() {
 
             {/* Active Simulation Console Output */}
             <div className="rounded-xl border bg-slate-950 p-4 font-mono text-xs text-white space-y-2">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
-                <span>SIMULATION CONSOLE :: ESTABLISHMENT: RADHA KRISHNA GARMENTS (LIN-1082-9923-4120)</span>
-                <span className="text-emerald-400">STATUS: {simStep === 0 ? "IDLE" : simStep === 4 ? "COMPLETE" : "PROCESSING..."}</span>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-b border-slate-800 pb-2 text-[11px] text-slate-400">
+                <span className="truncate">SIMULATION CONSOLE :: ESTABLISHMENT: RADHA KRISHNA GARMENTS (LIN-1082-9923-4120)</span>
+                <span className="text-emerald-400 shrink-0">STATUS: {simStep === 0 ? "IDLE" : simStep === 4 ? "COMPLETE" : "PROCESSING..."}</span>
               </div>
 
               {simStep === 0 && (

@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, FileUp, Loader2, ShieldCheck, TriangleAlert, Upload } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -191,7 +191,7 @@ function DocumentsPage() {
         <>
           <Section title="Extraction pipeline" subtitle={doc.title}>
             <Progress value={progress} className="mb-5 h-2" aria-label="Pipeline progress" />
-            <ol className="grid gap-3 md:grid-cols-2 lg:grid-cols-5">
+            <ol className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
               {PIPELINE_STAGES.map((s, i) => {
                 const state = stage > i ? "done" : stage === i ? "active" : "idle";
                 return (
@@ -224,8 +224,8 @@ function DocumentsPage() {
           {done ? (
             <>
               <Section title="Normalised field extraction" subtitle="Canonical labour-code fields mapped from the document layout.">
-                <div className="overflow-hidden rounded-xl border">
-                  <table className="w-full text-sm">
+                <div className="overflow-x-auto rounded-xl border">
+                  <table className="w-full text-sm min-w-[480px]">
                     <caption className="sr-only">Extracted fields and their compliance status</caption>
                     <thead className="bg-secondary text-left">
                       <tr>
