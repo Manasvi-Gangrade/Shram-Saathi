@@ -135,51 +135,84 @@
   --sidebar-border: oklch(1 0 0 / 16%);
 }
 
-/* PS-06 accessibility layers */
+/* Comprehensive Accessibility Layers */
 html[data-contrast="high"] {
-  --background: oklch(0 0 0);
-  --foreground: oklch(1 0 0);
-  --surface: oklch(0.12 0 0);
-  --card: oklch(0.12 0 0);
-  --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(1 0 0);
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.99 0 0);
+  --surface: oklch(0.1 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.99 0 0);
+  --popover: oklch(0.1 0 0);
+  --popover-foreground: oklch(0.99 0 0);
   --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.92 0 0);
+  --muted-foreground: #ffff00;
   --secondary: oklch(0.18 0 0);
-  --secondary-foreground: oklch(1 0 0);
-  --accent: oklch(0.22 0 0);
-  --accent-foreground: oklch(1 0 0);
-  --primary: oklch(0.92 0.18 95);
+  --secondary-foreground: oklch(0.99 0 0);
+  --accent: #ffff00;
+  --accent-foreground: oklch(0 0 0);
+  --primary: #ffff00;
   --primary-foreground: oklch(0 0 0);
-  --border: oklch(0.92 0.18 95);
-  --input: oklch(0.92 0.18 95);
-  --ring: oklch(0.92 0.18 95);
-  --risk-low: oklch(0.85 0.2 150);
-  --risk-mid: oklch(0.9 0.19 90);
-  --risk-high: oklch(0.72 0.24 25);
+  --border: #ffff00;
+  --input: #ffff00;
+  --ring: #ffff00;
+  --risk-low: #22c55e;
+  --risk-mid: #eab308;
+  --risk-high: #ef4444;
+  color-scheme: dark;
 }
 
-html[data-dyslexia="on"] {
-  --font-body: "Atkinson Hyperlegible", Verdana, sans-serif;
-  --font-heading: "Atkinson Hyperlegible", Verdana, sans-serif;
-  letter-spacing: 0.02em;
-  word-spacing: 0.1em;
+html[data-contrast="high"] a {
+  text-decoration: underline !important;
+  color: #38bdf8 !important;
 }
 
-html[data-focus-mode="on"] :is(a, button, [role="button"], input, select, textarea):focus-visible {
-  outline: 4px solid var(--saffron);
-  outline-offset: 3px;
+html[data-dyslexia="on"] *:not(i, [class*="icon"], svg) {
+  font-family: "Atkinson Hyperlegible", Verdana, sans-serif !important;
+  letter-spacing: 0.025em !important;
+  word-spacing: 0.08em !important;
 }
 
-html[data-focus-mode="on"] main :is(section, article) {
-  transition: opacity 0.2s ease;
+html[data-focus-mode="on"] main:has(section:hover) section:not(:hover) {
+  opacity: 0.5;
+  filter: grayscale(25%);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+html[data-focus-mode="on"] :is(a, button, [role="button"], input, select, textarea):focus-visible,
+html[data-focus-mode="on"] :is(a, button, [role="button"], input, select, textarea):focus {
+  outline: 3px solid var(--saffron) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--saffron) 60%, transparent) !important;
+}
+
+html[data-highlight-links="on"] :is(a, button[role="link"]) {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 4px !important;
+  color: #2563eb !important;
+  background-color: rgba(37, 99, 235, 0.08) !important;
+  border-radius: 2px !important;
+}
+
+html.dark[data-highlight-links="on"] :is(a, button[role="link"]) {
+  color: #60a5fa !important;
+  background-color: rgba(96, 165, 250, 0.15) !important;
+}
+
+html[data-reduce-motion="on"] *,
+html[data-reduce-motion="on"] *::before,
+html[data-reduce-motion="on"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
 }
 
 @layer base {
   html {
-    font-size: 16.75px;
+    font-size: calc(16.75px * var(--text-scale, 1));
     -webkit-text-size-adjust: 100%;
+    transition: font-size 0.15s ease-out;
   }
 
   * {
@@ -190,7 +223,7 @@ html[data-focus-mode="on"] main :is(section, article) {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
-    font-size: calc(1rem * var(--text-scale, 1));
+    font-size: 1rem;
     line-height: 1.58;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

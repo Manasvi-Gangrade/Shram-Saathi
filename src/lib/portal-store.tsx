@@ -26,6 +26,12 @@ type PortalState = {
   toggleFocusMode: () => void;
   iconMode: boolean;
   toggleIconMode: () => void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+  highlightLinks: boolean;
+  toggleHighlightLinks: () => void;
+  reduceMotion: boolean;
+  toggleReduceMotion: () => void;
   voiceOn: boolean;
   toggleVoice: () => void;
   speak: (text: string) => void;
@@ -43,6 +49,9 @@ export function PortalProvider({ children }: { children: ReactNode }) {
   const [dyslexia, setDyslexia] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
   const [iconMode, setIconMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [highlightLinks, setHighlightLinks] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const [voiceOn, setVoiceOn] = useState(true);
   const [speaking, setSpeaking] = useState(false);
   const [ttsSupported, setTtsSupported] = useState(false);
@@ -50,6 +59,12 @@ export function PortalProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setTtsSupported(typeof window !== "undefined" && "speechSynthesis" in window);
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("shram_theme");
+      if (savedTheme === "dark") {
+        setDarkMode(true);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -58,8 +73,14 @@ export function PortalProvider({ children }: { children: ReactNode }) {
     root.dataset["contrast"] = highContrast ? "high" : "normal";
     root.dataset["dyslexia"] = dyslexia ? "on" : "off";
     root.dataset["focusMode"] = focusMode ? "on" : "off";
+    root.dataset["highlightLinks"] = highlightLinks ? "on" : "off";
+    root.dataset["reduceMotion"] = reduceMotion ? "on" : "off";
+    root.classList.toggle("dark", darkMode);
     root.lang = lang;
-  }, [textScale, highContrast, dyslexia, focusMode, lang]);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("shram_theme", darkMode ? "dark" : "light");
+    }
+  }, [textScale, highContrast, dyslexia, focusMode, highlightLinks, reduceMotion, darkMode, lang]);
 
   const stopSpeaking = useCallback(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
@@ -95,7 +116,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
       setLang,
       t: (key) => translate(key, lang),
       textScale,
-      bumpText: (delta) => setTextScale((s) => Math.min(1.6, Math.max(0.85, Math.round((s + delta) * 100) / 100))),
+      bumpText: (delta) => setTextScale((s) => Math.min(1.5, Math.max(0.85, Math.round((s + delta) * 100) / 100))),
       resetText: () => setTextScale(1),
       highContrast,
       toggleContrast: () => setHighContrast((v) => !v),
@@ -105,6 +126,12 @@ export function PortalProvider({ children }: { children: ReactNode }) {
       toggleFocusMode: () => setFocusMode((v) => !v),
       iconMode,
       toggleIconMode: () => setIconMode((v) => !v),
+      darkMode,
+      toggleDarkMode: () => setDarkMode((v) => !v),
+      highlightLinks,
+      toggleHighlightLinks: () => setHighlightLinks((v) => !v),
+      reduceMotion,
+      toggleReduceMotion: () => setReduceMotion((v) => !v),
       voiceOn,
       toggleVoice: () => setVoiceOn((v) => !v),
       speak,
@@ -112,7 +139,22 @@ export function PortalProvider({ children }: { children: ReactNode }) {
       speaking,
       ttsSupported,
     }),
-    [lang, textScale, highContrast, dyslexia, focusMode, iconMode, voiceOn, speak, stopSpeaking, speaking, ttsSupported],
+    [
+      lang,
+      textScale,
+      highContrast,
+      dyslexia,
+      focusMode,
+      iconMode,
+      darkMode,
+      highlightLinks,
+      reduceMotion,
+      voiceOn,
+      speak,
+      stopSpeaking,
+      speaking,
+      ttsSupported,
+    ],
   );
 
   return <PortalContext.Provider value={value}>{children}</PortalContext.Provider>;

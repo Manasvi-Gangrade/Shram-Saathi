@@ -6,14 +6,18 @@ import {
   CloudSun,
   Contrast,
   Languages,
+  Link2,
   LogIn,
   MapPin,
   Mic,
   Minus,
+  Moon,
+  PauseCircle,
   Play,
   Plus,
   RotateCcw,
   ScanEye,
+  Sun,
   Type,
   Volume2,
   VolumeX,
@@ -159,46 +163,101 @@ export function GovHeader() {
                 <span className="hidden lg:inline">Accessibility</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-72 p-3 text-xs">
-              <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-                PS-06 Accessibility Options
-              </p>
-              <div className="mb-3 flex items-center justify-between rounded-lg border p-2">
-                <span className="flex items-center gap-1.5 text-xs font-medium">
-                  <Type className="size-3.5" /> Text Size
+            <DropdownMenuContent align="end" className="w-80 p-3 text-xs shadow-xl">
+              <div className="mb-2 flex items-center justify-between border-b pb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-foreground">
+                  Accessibility &amp; Display
+                </span>
+                <span className="text-[10px] rounded bg-primary/10 px-1.5 py-0.5 font-medium text-primary">
+                  WCAG 2.1 AA
+                </span>
+              </div>
+
+              {/* Text Size Scaler */}
+              <div className="mb-2 flex items-center justify-between rounded-lg border bg-muted/20 p-2">
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
+                  <Type className="size-3.5 text-primary" /> Text Size
                 </span>
                 <span className="flex items-center gap-1">
-                  <Button size="icon" variant="ghost" className="size-6" onClick={() => portal.bumpText(-0.1)}>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="size-6 rounded"
+                    onClick={() => portal.bumpText(-0.1)}
+                    title="Decrease font size"
+                  >
                     <Minus className="size-3" />
                   </Button>
-                  <span className="w-8 text-center text-xs tabular-nums font-bold">
+                  <span className="w-9 text-center text-xs tabular-nums font-bold text-foreground">
                     {Math.round(portal.textScale * 100)}%
                   </span>
-                  <Button size="icon" variant="ghost" className="size-6" onClick={() => portal.bumpText(0.1)}>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="size-6 rounded"
+                    onClick={() => portal.bumpText(0.1)}
+                    title="Increase font size"
+                  >
                     <Plus className="size-3" />
                   </Button>
-                  <Button size="icon" variant="ghost" className="size-6" onClick={portal.resetText}>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="size-6 text-muted-foreground hover:text-foreground"
+                    onClick={portal.resetText}
+                    title="Reset to 100%"
+                  >
                     <RotateCcw className="size-3" />
                   </Button>
                 </span>
               </div>
+
+              {/* Dark Mode */}
               <ToolbarToggle
-                icon={<Contrast className="size-3.5" />}
-                label="High Contrast"
+                icon={portal.darkMode ? <Moon className="size-3.5 text-indigo-400" /> : <Sun className="size-3.5 text-amber-500" />}
+                label="Dark Theme"
+                checked={portal.darkMode}
+                onChange={portal.toggleDarkMode}
+              />
+
+              {/* High Contrast */}
+              <ToolbarToggle
+                icon={<Contrast className="size-3.5 text-yellow-500" />}
+                label="High Contrast (AAA)"
                 checked={portal.highContrast}
                 onChange={portal.toggleContrast}
               />
+
+              {/* Dyslexia-Friendly Font */}
               <ToolbarToggle
-                icon={<Type className="size-3.5" />}
+                icon={<Type className="size-3.5 text-blue-500" />}
                 label="Dyslexia Font"
                 checked={portal.dyslexia}
                 onChange={portal.toggleDyslexia}
               />
+
+              {/* Focus Spotlight */}
               <ToolbarToggle
-                icon={<ScanEye className="size-3.5" />}
-                label="Focus Mode"
+                icon={<ScanEye className="size-3.5 text-emerald-500" />}
+                label="Focus Spotlight"
                 checked={portal.focusMode}
                 onChange={portal.toggleFocusMode}
+              />
+
+              {/* Highlight Links */}
+              <ToolbarToggle
+                icon={<Link2 className="size-3.5 text-cyan-500" />}
+                label="Highlight Links"
+                checked={portal.highlightLinks}
+                onChange={portal.toggleHighlightLinks}
+              />
+
+              {/* Reduce Motion / Pause Animations */}
+              <ToolbarToggle
+                icon={<PauseCircle className="size-3.5 text-rose-500" />}
+                label="Pause Animations"
+                checked={portal.reduceMotion}
+                onChange={portal.toggleReduceMotion}
               />
             </DropdownMenuContent>
           </DropdownMenu>
